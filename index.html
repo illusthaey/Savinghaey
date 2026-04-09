@@ -6,137 +6,673 @@
   <meta name="color-scheme" content="light" />
   <title>고주무관 일병 구하기</title>
 
+  
   <link rel="icon" href="/static/favicon.ico" />
   <link rel="stylesheet" href="/static/style.css" />
+  <script src="/static/footer.js"></script>
+  <script src="/static/global-loader.js?v=1"></script>
+
+
+
 </head>
 
-
-
-  
 <body class="alien-side-bg">
+<div class="alien-page-frame">
 <main class="container">
+    <h1>고주무관 일병 구하기</h1>
+    <p class="subtitle">제작·운영 — 업무천재 고주무관</p>
 
-  <h1>고주무관 전용 업무 보조 웹페이지</h1>
-  <p class="subtitle"> — 제작·운영: 업무천재 고주무관</p>
-
-  <p class="muted">
-    ·바쁘다 바빠 <br/>
-    ·<br/>
-    ·<br/>
-    ·<br/>
-  </p>
-
+    <div>
+      <ul>
+        <li><p class="muted">공유용 아님. 내꺼</p></li>
+      </ul>
+    </div>
   <hr/>
 
-  <!-- 업무 대시보드 (기본: 접힘) -->
-  <section class="section">
-    <details class="dash-details">
-      <summary class="shot-summary">
-        <span class="local-h2">업무 대시보드</span>
-        <span class="muted local-small"> — 펼치기/접기</span>
-      </summary>
 
-      <hr/>
+  
+  <section class="section" id="notice">
+    <h2>업무 일정 관리 달력</h2>
+     <div class="btn-desc">·마감 기한을 잘 지켜보자.</div>
+    <hr/>
 
-      <div class="grid two">
-        <div class="card">
-          <h3 class="local-h3 local-tight">빠른 이동</h3>
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn pastel-yellow" href="/dead-line/">업무 일정 관리 달력</a>
+      </div>
+    </div>
+  </section>
 
-          <div class="row gap">
-            <a class="btn ghost" href="#efficiency-tools">업무 효율화 도구 모음</a>
-            <a class="btn ghost" href="#assistant-tools">업무 보조 도구 모음</a>
+  
+  <nav class="section" aria-label="목차">
+    <h2 class="local-h2">목차</h2>
+    <p class="muted">·필요한 구역으로 바로 이동하십시오.</p>
+    <hr/>
+
+    <div class="grid two">
+      <div class="card">
+        <h3 class="local-h3">상단 안내</h3>
+        <div class="link-list">
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#notice">공지사항 바로가기</a>
+          </div>
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#dlSection">업무 시간 단축용 exe 프로그램</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="local-h3">본문 기능 1</h3>
+        <div class="link-list">
+          
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#budget">예산 관련 기능</a>
+          </div>
+          
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#income">세입 업무 관련 기능</a>
+          </div>
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#labor">노무제공자 (방과후강사 등)</a>
+          </div>
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#insurance">사회보험료 관련</a>
+          </div>
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#leave">교육공무직 복무 관련</a>
+          </div>
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#payroll">교육공무직 인건비 관련</a>
+          </div>
+          
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#coach">운동부지도자 관련 (학교장채용)</a>
+          </div>
+          
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#special-payroll">특수운영직군 관련</a>
           </div>
 
-          <p class="muted local-small">아래 섹션으로 스크롤 점프합니다.</p>
-        </div>
-
-        <div class="card">
-          <h3 class="local-h3 local-tight">대시보드에 넣기 좋은 것(예시)</h3>
-          <ul>
-            <li>오늘 할 일 체크리스트</li>
-            <li>자주 쓰는 링크(결재/메일/드라이브 등)</li>
-            <li>오늘 일정/마감</li>
-            <li>빠른 메모</li>
-          </ul>
+          
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#fixed-teacher">계약제교원(기간제교사) 관련</a>
+          </div>
+          
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#other-workers">그 외 근로계약자</a>
+          </div>
         </div>
       </div>
-    </details>
+
+      <div class="card">
+        <h3 class="local-h3">본문 기능 2</h3>
+        <div class="link-list">
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#tools">각종 유용한 기능</a>
+          </div>
+          
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#links">연계 업무지원 웹사이트</a>
+          </div>
+
+
+          <div class="link-item">
+            <a class="btn pastel-grey" href="#allowanceNotice">외부 게재 사항</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section dl-section" id="dlSection">
+    <h2 class="local-h2">업무 시간 단축용 exe 프로그램</h2>
+
+    <button
+      type="button"
+      class="btn btn-lightgrey"
+      id="dlToggleBtn"
+      aria-expanded="false"
+      aria-controls="dlSectionBody"
+    >
+      다운로드 목록 펼치기 ▸
+    </button>
+
+    <div id="dlSectionBody" hidden>
+      <hr/>
+
+      <div class="tool-grid">
+        <article class="tool-card">
+          <header class="tool-head">
+            <h3 class="tool-title">[사회보험료] 방과후강사 월보수액 계산기</h3>
+          </header>
+
+          <a class="btn primary tool-btn" id="downloadAfterschoolpay" href="#" download>
+            [사회보험료] 방과후강사 월보수액 계산기 다운로드
+          </a>
+
+          <div class="tool-body">
+            <div class="muted">
+              ·웹페이지 기능과 동일한 구성의 프로그램입니다. 입력한 내용대로 엑셀파일 생성함.<br/>
+              ·PC에 저장해놓고 쓰는 게 더 편하면 다운로드 받아서 사용하십시오.<br/>
+            </div>
+
+            <details class="shot-details">
+              <summary class="shot-summary">프로그램 실행 화면 보기</summary>
+              <figure class="tool-shot">
+                <img src="/static/program_afterschool_teacher_01.png" alt="프로그램 실행 화면" class="tool-thumb" loading="lazy" /><br/>
+                <img src="/static/program_afterschool_teacher_02.png" alt="생성된 엑셀파일 예시 화면" class="tool-thumb" loading="lazy" /><br/>
+              </figure>
+            </details>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <header class="tool-head">
+            <h3 class="tool-title">[연말정산] 기타소득 등록업무 경감 프로그램</h3>
+          </header>
+
+          <a class="btn primary tool-btn" id="downloadExpense" href="#" download>
+            [연말정산] 기타소득 등록업무 경감 프로그램
+          </a>
+
+          <div class="tool-body">
+            <div class="muted">
+              ·검증 완료. 배포 가능.<br/>
+              ·지출결의서 PDF 1년치를 업로드하면 “기타” 및 “보수(일용)” 유형만 선별하여 엑셀 파일로 변환<br/>
+            </div>
+
+            <details class="shot-details">
+              <summary class="shot-summary">프로그램 실행 화면 보기</summary>
+              <figure class="tool-shot">
+                <img src="/static/program_pdf_to_excel_01.jpg" alt="기타소득 PDF 엑셀 변환 실행 화면" class="tool-thumb" loading="lazy" />
+              </figure>
+            </details>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("dlToggleBtn");
+        const body = document.getElementById("dlSectionBody");
+        if (!btn || !body) return;
+
+        const setOpen = (open) => {
+          body.hidden = !open;
+          btn.setAttribute("aria-expanded", String(open));
+          btn.textContent = open ? "다운로드 목록 접기 ▾" : "다운로드 목록 펼치기 ▸";
+        };
+
+        setOpen(false);
+
+        btn.addEventListener("click", () => {
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+          setOpen(!isOpen);
+        });
+      });
+    </script>
   </section>
 
 
 
+
+
+
   
-  <!-- 업무 일정 -->
-  <section class="section" id="schedule">
-    <h2 class="local-h2">업무 일정 관리 보조 도구</h2>
+  <section class="section" id="budget">
+    <h2>예산 관련 기능</h2>
     <hr/>
 
-    <div>
-      <a class="btn" href="/schedule-time/">업무 일정 달력</a>
-      <div class="btn-desc">
-        ·일정 놓치지 않도록
+    <div class="link-list">
+      
+      <div class="link-item">
+        <a class="btn primary" href="/budget-table-analysis/">사업관리카드 현액 마이너스 잔액 검출기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·원인행위 예산 잔액이 마이너스인 경우 빨갛게 표시해줌 
+        </div>
       </div>
+
+
     </div>
   </section>
 
   
-  
-  <!-- 옵시디언, 노트북 LM -->
-  <section class="section" id="obsidian-notebooklm">
-    <h2 class="local-h2">사고 보조 도구</h2>
+  <section class="section" id="income">
+    <h2>세입 업무 관련 기능</h2>
     <hr/>
 
-    <div>
-      <a class="btn" href="/obsidian-like/">옵시디언-like 도구</a>
-      <div class="btn-desc">
-        ·네트워크적 사고 방식
+    <div class="link-list">
+      
+      <div class="link-item">
+        <a class="btn primary" href="/income-ledger/">수입·지출일계 금액 계산기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·농협 인터넷 뱅킹에서 빠른조회서비스-거래내역조회-엑셀 파일 다운로드한 거 올리면 일자별 수입 및 지출 일계 금액 구해줌.<br/>
+          ·기간 길게 해도 상관없음. 미수납된 금액 찾아야하거나 현금출납부 등 검산할 때 활용 굿
+        </div>
       </div>
-    </div>
 
-    <div>
-      <a class="btn" href="/notebooklm-like/">노트북LM-like 도구</a>
-      <div class="btn-desc">
-        ·소스 기반 답변
+      
+      <div class="link-item">
+        <a class="btn primary" href="/milk-user-fee-attachments/">우유 급식비 징수요구 내역 → 징수결의 첨부서식 변환 (개발자용)</a>
+        <div class="btn-desc">
+          ·개발자 학교 영양교사가 사용하는 서식에 맞춘 거임. 
+        </div>
       </div>
+      
+      <div class="link-item">
+        <a class="btn primary" href="/after-school-user-fee-attachment/">늘봄학교 징수요구 내역 → 징수결의 첨부서식 변환 (개발자용)</a>
+        <div class="btn-desc">
+          ·개발자 학교 늘봄지원실에서 사용하는 서식에 맞춘 거임. 
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn primary" href="/bad-parents/">세입 미납 업무 문자 독촉 업무 경감기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·미수납자 전체 업로드하면 학생별로 문자 발송 문구 및 미수납 안내장을 일괄 생성해드립니다. 미수납자 많을 때 활용하십시오.<br/>
+          ·업로드할 파일: 에듀파인 학교회계에서 수입관리-출납관리-미수납관리-미수납대상 "엑셀파일" 다운로드
+        </div>
+      </div>
+
+      
+      <div class="link-item">
+        <a class="btn primary" href="/school-staff-meal-fee/">교직원 급식비 징수내역 집계기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·식품비, 운영비, 급식일수 입력하면 징수내역 엑셀 파일로 저장 가능. 에듀파인 업로드용 엑셀 서식도 생성해줌.
+        </div>
+      </div>
+      
     </div>
-  
-  
-  
-  
-  
   </section>
 
-  
-  <!-- 업무 효율화 도구 모음 -->
-  <section class="section" id="efficiency-tools">
-    <h2 class="local-h2">업무 효율화 도구 모음</h2>
+  <section class="section" id="labor">
+    <h2 class="local-h2">노무제공자 (방과후강사 등)</h2>
     <hr/>
 
-    <div>
-      <a class="btn" href="/edusprout-haey/">업무 계산 도구</a>
-      <div class="btn-desc">
-        ·
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn primary" href="/monthly-pay-afterschool-teacher/">방과후강사 월보수액 계산기 (사용 가능)</a>
+        <div class="btn-desc">·강사료 입력하면 월보수액이랑 산재보험료 자동계산됨.</div>
       </div>
     </div>
   </section>
 
-  <!-- 업무 보조 도구 모음 -->
-  <section class="section" id="assistant-tools">
-    <h2 class="local-h2">업무 보조 도구 모음</h2>
+  <section class="section" id="insurance">
+    <h2 class="local-h2">사회보험 관련</h2>
     <hr/>
 
-    <div>
-      <a class="btn" href="/edusprout-haey/">업무 보조 도구</a>
-      <div class="btn-desc">
-        ·
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn primary" href="/social-insurance-cover/">사회보험료 고지내역 엑셀 집계기 (사용가능)</a>
+        <div class="btn-desc">·각 보험료 고지내역 다운받아서 업로드하면 엑셀 파일에 집계해줌. 교육공무직 인사기록 추가하면 공무직 따로 집계함 </div>
+      </div>
+
+      
+      <div class="link-item">
+        <a class="btn primary" href="/social-insurance-calculator/">사회보험료 고지내역 산출기 (사용 가능)</a>
+        <div class="btn-desc">·산재보험요율은 학교마다 다르니 확인후 개별 입력하세요. 기본값은 개발자 학교 0.966%</div>
+      </div>
+
+
+ <div class="link-item">
+        <a class="btn primary" href="/social-insurance-late-fee/">사회보험료 미납 연체료 계산기 (사용가능, 훌쩍훌쩍)</a>
+        <div class="btn-desc">·미납 시 부과되는 연체료 계산기 훌쩍훌쩍</div>
       </div>
     </div>
   </section>
 
+  <section class="section" id="leave">
+    <h2 class="local-h2">교육공무직 복무 관련</h2>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn primary" href="/annualleave-give-only-after-school-carer/">늘봄학교전담사 직종전환 후 첫 연차 부여 시간 계산기 (사용가능)</a>
+        <div class="btn-desc">·시간 단위로 직종전환 전후 비례 계산</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn primary" href="/annualleave-give-2026-mini/">교육공무직 연차 유급휴가일수 미니 계산기 (사용가능)</a>
+        <div class="btn-desc">·초간단 미니계산기. 빠른 검산용</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn primary" href="/annualleave-give-2026/">2026학년도 교육공무직 연차 유급휴가일수 계산기 (테스트)</a>
+        <div class="btn-desc">
+          ·2025학년도 근무에 대해 2026학년도에 사용가능한 연차 일수를 부여함.<br/>
+          ·나이스 인사기록 및 근무상황 조회 엑셀 원자료 업로드하면 자동으로 출근율, 연차 부여일수 계산해줌.
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn primary" href="/annualleave-unused-mini/">교육공무직 연차 미사용수당 미니 계산기 (사용 가능)</a>
+        <div class="btn-desc">·빠른 계산을 위해 만듦. 10진수 연차일수 단위를 일/시간/분단위로 빠르게 환산. 통상임금 수기입력 필요</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn primary" href="/annualleave-unused-2025/">2025학년도 교육공무직 연차 미사용수당 계산기 (테스트)</a>
+        <div class="btn-desc">
+          ·2025학년도에 미사용한 연차에 대해 2026.2.28.일자 기준 통상임금으로 미사용수당 산정함.<br/>
+          ·나이스 복무상황 올리면 자동으로 연차 사용내역만 선별함
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="payroll">
+    <h2 class="local-h2">교육공무직 인건비 관련</h2>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn primary" href="/ordinary-wage/">교육공무직 통상임금 계산기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·학교근로자 직종별 보수표 반영<br/>
+          ·관련: 도교육청 예산과-2109(2025.2.13.)
+        </div>
+      </div>
+
+<div class="link-item">
+        <a class="btn primary" href="/overtime-pay-employee/">교육공무직 초과근무수당 계산기 (테스트)</a>
+        <div class="btn-desc">
+          ·운동부지도자는 교육장 임용입니다. 학교장임용은 밑에 내려가세요<br/>
+          ·학교근로자 직종별 보수표 반영/ 관련: 도교육청 예산과-2109(2025.2.13.)
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn primary" href="/vacation-pay-cook/">조리종사원 겨울방학중 급식소 청소 인건비 계산기 (사용 가능)</a>
+        <div class="btn-desc">·주휴수당 반영 및 수기 일정 추가 가능</div>
+      </div>
+
+
+      <!-- 주석 처리      
+      <div class="link-item">
+        <a class="btn primary" href="/cook-industrial-safety-education-pay/">조리종사원 산업안전보건교육비 계산기 (테스트)</a>
+        <div class="btn-desc">·집체·온라인 교육비 산출</div>
+      </div>
+      -->
+    </div>
+  </section>
+
+  
+  <section class="section" id="coach">
+    <h2 class="local-h2">학교장 임용 학교운동부지도자</h2>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn primary" href="/user-fee-ratio-coach/">운동부지도자 수익자부담금 비율 계산기 (개발자용)</a>
+        <div class="btn-desc">·실수령액과 공제 금액 모두 수익자부담금을 재원으로 하는 경우 예산 분배 계산함. (개발자 학교 기준)</div>
+      </div>
+
+      
+      <div class="link-item">
+        <a class="btn primary" href="/overtime-pay-coach/">운동부지도자 초과근무수당 계산기 (사용가능)</a>
+        <div class="btn-desc">·학교장임용 학교운동부지도자는 보수가 달라서 이걸로 하셔야합니다.</div>
+      </div>
+      
+
+      <!-- 주석 처리
+      <div class="link-item">
+        <a class="btn primary" href="/sports-contract-teacher-budget-calculator/">스포츠강사 연간 인건비 계산기 (테스트중)</a>
+        <div class="btn-desc">·2025회계 기준</div>
+      </div>
+      -->
+    </div>
+  </section>
+  
+
+  <section class="section" id="special-payroll">
+    <h2 class="local-h2">특수운영직군 인건비 관련</h2>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn primary" href="/vacation-pay-cleaner/">청소원 방학중 근무 인건비 계산기 (사용 가능)</a>
+        <div class="btn-desc">·주휴수당 반영 및 수기 일정 추가 가능</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn primary" href="/salary-gatekeeper/">출입문개폐전담원 인건비 계산기 (사용 가능)</a>
+        <div class="btn-desc">·출근내역 및 인건비 산출내역을 엑셀 파일로 저장 가능</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="fixed-teacher">
+    <h2>계약제교원 인건비 등 관련</h2>
+    <hr/>
+    
+    <div class="link-list">
+      <div class="link-item">
+      <a class="btn primary" href="/calculator-retirement-fixed-term-teacher/">
+        기간제교원 퇴직금 산정기 (사용가능)
+      </a>
+      <div class="btn-desc">·나이스에서 연도별총급여 지급내역 엑셀 파일 다운로드 받아서 업로드하면 계산해줌.</div>
+    </div>
+    </div>
+  </section>
+
+
+
+  <section class="section" id="other-workers">
+    <h2>그 외 근로계약자</h2>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn primary" href="/parttime-wage-calculator/">시급·일급제 근로계약자 인건비 계산기</a>
+        <div class="btn-desc">·초단시간·단시간 자동 구분</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tools">
+    <h2>각종 유용한 기능</h2>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn pastel-teal" href="/analysis-human-resource/">인사발령자 학교·기관별/지역별/직군별 명단 집계기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·에듀파인 업무지원-일반게시판에서 인사발령 엑셀 첨부파일 다운받아서 업로드하면 학교·기관별/지역별/직렬·직군·과목별로 전체 전입자 및 전출자 명단 조회 가능<br/>
+          ·학교·기관 근무지별 집계 내역은 보수 기본자료 작성 및 맞춤형 복지 전입전출 처리 등에 활용 가능<br/>
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/excel-sheet/">엑셀 시트 웹 버전 (사용 가능)</a>
+        <div class="btn-desc">·엑셀 파일 열기 귀찮을때 간단한 계산을 빠르게</div>
+      </div>
+
+      
+      <div class="link-item">
+        <a class="btn ghost" href="/excel-viewer/">엑셀 미리보기 (사용 가능)</a>
+        <div class="btn-desc">·엑셀 파일을 웹에서 미리보기</div>
+      </div>
+
+      
+      <div class="link-item">
+        <a class="btn ghost" href="/excel-reverse/">엑셀 행렬 변환기 (사용 가능)</a>
+        <div class="btn-desc">·행이랑 열을 서로 대각선으로 뒤집어줌. </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/stamp-true-copy/">원본대조필 도장 pdf 일괄 날인기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·교육경비 정산서류 및 기간제 서류 송부 등 찍을 거 많을 때 pdf에 자동으로 도장 찍어드림.<br/>
+          ·도장 크기 변경 불가
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/stamp-insert-png-into-pdf/">이미지 파일 pdf 삽입기 (사용 가능)</a>
+        <div class="btn-desc">
+          ·배경 제거(투명화)한 PNG파일을 PDF에 일괄 삽입해드림. (도장 날인 시 등에 유용)<br/>
+          ·크기 조절 가능
+        </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/pdf-delete-pages/">pdf 특정 페이지 삭제기 (사용 가능)</a>
+        <div class="btn-desc">·중간중간 페이지 삭제해야할 때 빠르게 처리</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/pdf-divide-one-page/">PDF 여러장 → 1페이지씩 분할기 (사용 가능)</a>
+        <div class="btn-desc">·여러 페이지짜리 PDF 업로드하면 1페이지씩으로 분할 저장해줌. 전출 공무직 연차 일수 통보 시에 유용함</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/convertor-images-to-pdf/">이미지 파일들 PDF로 병합기 (사용 가능)</a>
+        <div class="btn-desc">·JPG, PNG 등 이미지 파일들 올리면 PDF파일로 병합해줌</div>
+      </div>
+
+
+<div class="link-item">
+        <a class="btn ghost" href="/pdf-reduce-byte/">PDF 체중 감량기 (사용 가능)</a>
+        <div class="btn-desc">·PDF 파일 올리면 용량 압축해줌. 데이터 저장 안 됩니다. </div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/calculator-age/">만나이 계산기 (사용 가능)</a>
+        <div class="btn-desc">·출생년도 및 계산 시점 기준일자 입력하면 만나이 계산해줌</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/calculator-day-of-week/">특정 일자 요일 산출기 (사용 가능)</a>
+        <div class="btn-desc">·예를들어 1995-09-06 형식으로 입력하면 요일 알려줌. 고주무관 생일 ㅎ</div>
+      </div>
+
+      <div class="link-item">
+        <a class="btn ghost" href="/phone-nunber-insert-hyphen/">핸드폰 번호 11자리 숫자 사이 하이픈 삽입기 (사용가능)</a>
+        <div class="btn-desc">·01012345678 형식의 숫자를 010-1234-5678로 변경해줌. 엑셀 파일 다운로드 가능</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="links">
+    <h2>연계 업무지원 웹사이트</h2>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn pastel-teal"
+           href="https://gyohaeng.pages.dev"
+           target="_blank"
+           rel="noopener"
+           referrerpolicy="origin">
+          교행노트 바로가기
+        </a>
+
+        <div class="btn-desc muted">
+          ·기관에서 근무중인 주무관님께서 만드셨습니다. 감사, 통계자료, 법제처 자료 등과 다양한 문서편집 툴 기능이 있습니다.
+        </div>
+      </div>
+
+
+      <div class="link-item">
+        <a class="btn pastel-teal"
+           href="https://blog.naver.com/heabin78/224184008634"
+           target="_blank"
+           rel="noopener"
+           referrerpolicy="origin">
+          내일도 반짝반짝 블로그 바로가기
+        </a>
+
+        <div class="btn-desc muted">
+          ·강원특별자치도 소속 6급 실장님께서 운영 중이신 블로그입니다. (대표 저서: 오늘도 고행? 아니 교행)
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <section class="section" id="allowanceNotice">
+    <h2>외부 게재 사항</h2>
+    <p class="muted">
+      ·전달받은 자료를 읽고, 구성원으로써 현재 업무 상 발생 중인 어려움에 동의하여 게재 협조 드립니다.
+    </p>
+    <hr/>
+
+    <div class="link-list">
+      <div class="link-item">
+        <a class="btn ghost" href="/notice-adjustment-2027/">지방공무원 수당 조정 요구 관련 안내</a>
+        <div class="btn-desc">·첨부 자료 기준으로 지방공무원 산업안전보건수당 등 수당 조정 요구서의 세부 근거를 정리함</div>
+      </div>
+    </div>
+  </section>
+
+  
 </main>
 
-<script src="/static/disable-copy.js"></script>
-<script src="/static/footer.js"></script>
-<script src="/static/global-loader.js?v=1"></script>
+
+
+
+
+
+  
+<script>
+  const EXPENSE_URL =
+    "https://drive.google.com/file/d/1MWqffcPAzERlKSW_Qp-dph9G808UmO5O/view?usp=drive_link";
+
+  const AFTERSCHOOL_PAY_URL =
+    "https://drive.google.com/file/d/16Nc2oCjoHVBOExbE1mRIWFdJk_x7--re/view?usp=drive_link";
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const afterschoolPay = document.getElementById("downloadAfterschoolpay");
+    const expense = document.getElementById("downloadExpense");
+
+    if (expense) expense.href = EXPENSE_URL;
+    if (afterschoolPay) afterschoolPay.href = AFTERSCHOOL_PAY_URL;
+
+    const currentPath = window.location.pathname.replace(/\/index\.html$/, "/");
+
+    document
+      .querySelectorAll('main section.section a.btn[href]:not([download])')
+      .forEach((link) => {
+        const rawHref = (link.getAttribute("href") || "").trim();
+
+        if (!rawHref) return;
+        if (rawHref.startsWith("#")) return;
+        if (/^(javascript:|mailto:|tel:)/i.test(rawHref)) return;
+
+        let url;
+        try {
+          url = new URL(rawHref, window.location.origin);
+        } catch (error) {
+          return;
+        }
+
+        const normalizedLinkPath = url.pathname.replace(/\/index\.html$/, "/");
+        const isSameOrigin = url.origin === window.location.origin;
+        const isSamePage =
+          normalizedLinkPath === currentPath &&
+          !url.search &&
+          !url.hash;
+
+        if (!isSameOrigin || isSamePage) return;
+
+        link.target = "_blank";
+
+        const relTokens = new Set(
+          (link.getAttribute("rel") || "")
+            .split(/\s+/)
+            .map((token) => token.trim())
+            .filter(Boolean)
+        );
+
+        relTokens.add("noopener");
+        link.rel = Array.from(relTokens).join(" ");
+      });
+  });
+</script>
+
+</div>
 </body>
 </html>
