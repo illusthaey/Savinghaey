@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>고주무관 업무 마감 달력</title>
+  <title>업무 마감 달력</title>
 
 
 
@@ -12,7 +12,8 @@
   <script src="/static/footer.js"></script>
   <script src="/static/global-loader.js?v=1"></script>
 
-  
+
+
   <meta name="color-scheme" content="light only" />
   <link rel="icon" href="/static/favicon.ico" />
   <link rel="stylesheet" href="/static/style.css" />
@@ -215,7 +216,7 @@
     }
 
     .calendar-day {
-      min-height: 154px;
+      min-height: 150px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -465,18 +466,9 @@
       color: #374151;
     }
 
-    .task-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .task-actions .btn,
-    .table-actions .btn {
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 0.92rem;
+    .task-link {
+      margin-top: 12px;
+      display: inline-flex;
     }
 
     .empty-state {
@@ -520,13 +512,6 @@
       text-align: left;
     }
 
-    .table-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: center;
-    }
-
     .table-row-done td {
       opacity: 0.7;
       background: #fcfcfc;
@@ -540,6 +525,7 @@
       color: #111827;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
       white-space: pre-wrap;
+      overflow-x: auto;
     }
 
     .pill-row {
@@ -561,69 +547,6 @@
       font-size: 0.92rem;
     }
 
-    .modal[hidden] {
-      display: none;
-    }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-    }
-
-    .modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.5);
-    }
-
-    .modal-panel {
-      position: relative;
-      max-width: 760px;
-      max-height: 90vh;
-      overflow: auto;
-      margin: 5vh auto;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: #fff;
-      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.22);
-      padding: 20px;
-    }
-
-    .modal-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .modal-head h3 {
-      margin: 0;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .form-grid .full {
-      grid-column: 1 / -1;
-    }
-
-    .modal-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
     .helper-text {
       margin: 6px 0 0;
       font-size: 0.92rem;
@@ -634,6 +557,15 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
+    }
+
+    .fatal-box {
+      margin-top: 18px;
+      border: 1px solid #fecaca;
+      border-radius: 16px;
+      background: #fef2f2;
+      padding: 16px;
+      color: #991b1b;
     }
 
     @media (max-width: 980px) {
@@ -657,7 +589,7 @@
       }
 
       .calendar-day {
-        min-height: 112px;
+        min-height: 108px;
         padding: 8px;
       }
 
@@ -670,8 +602,7 @@
         font-size: 0.76rem;
       }
 
-      .guide-grid,
-      .form-grid {
+      .guide-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -683,15 +614,12 @@
       }
 
       .hero-actions,
-      .toolbar-right,
-      .modal-actions {
+      .toolbar-right {
         justify-content: stretch;
       }
 
       .hero-actions .btn,
-      .toolbar-right .btn,
-      .toolbar-right label.btn,
-      .modal-actions .btn {
+      .toolbar-right .btn {
         width: 100%;
       }
 
@@ -700,37 +628,31 @@
       }
 
       .calendar-day {
-        min-height: 96px;
-      }
-
-      .modal-panel {
-        margin: 0;
-        max-width: none;
-        max-height: none;
-        min-height: 100dvh;
-        border-radius: 0;
+        min-height: 92px;
       }
     }
   </style>
 </head>
+<body class="page-index">
+  <a href="#mainContent" class="skip-link">본문 바로가기</a>
 
-
-<body class="alien-side-bg">
-<div class="alien-page-frame">
-<main class="container">
-  
+  <main id="mainContent" class="container">
     <section class="section section-soft page-head">
-      <h1>업무 마감 달력</h1>
-      <p class="muted" id="todayLabel"></p>
+      <p class="subtitle" id="pageSubtitle">정적 페이지 + JSON 데이터 관리</p>
+      <h1 id="pageTitle">업무 마감 달력</h1>
+      <p class="muted" id="pageMeta"></p>
 
+      <div class="callout">
+        <ul class="list-tight" id="guideList"></ul>
+      </div>
 
       <div class="hero-actions">
-        <button type="button" class="btn pastel-blue" id="btnOpenCreate">업무 추가</button>
-        <button type="button" class="btn pastel-mint" id="btnTodayFocus">오늘 보기</button>
-        <button type="button" class="btn pastel-yellow" id="btnExportJsonTop">JSON 내보내기</button>
-        <label for="importFileTop" class="btn pastel-purple">JSON 불러오기</label>
-        <input id="importFileTop" type="file" accept="application/json" hidden />
+        <a class="btn pastel-blue" href="#calendarSection">달력 보기</a>
+        <a class="btn pastel-mint" href="#upcomingSection">임박한 마감</a>
+        <a class="btn pastel-yellow" href="#allTasksSection">전체 목록</a>
       </div>
+
+      <div id="fatalErrorBox" class="fatal-box" hidden></div>
     </section>
 
     <nav class="section quick-nav section-soft" aria-label="빠른 이동">
@@ -742,7 +664,7 @@
         <a class="chip" href="#selectedDaySection">선택 날짜</a>
         <a class="chip" href="#upcomingSection">임박한 마감</a>
         <a class="chip" href="#allTasksSection">전체 목록</a>
-        <a class="chip" href="#guideSection">반영 안내</a>
+        <a class="chip" href="#guideSection">GitHub 반영 안내</a>
       </div>
     </nav>
 
@@ -750,7 +672,7 @@
       <div class="row between gap">
         <div>
           <h2>대시보드</h2>
-          <p class="muted" id="dashboardText">현재 필터 결과를 집계합니다.</p>
+          <p class="muted" id="dashboardText">현재 등록된 업무를 집계합니다.</p>
         </div>
       </div>
       <div class="summary-grid" id="summaryGrid"></div>
@@ -803,6 +725,7 @@
           완료 업무 숨기기
         </label>
         <button type="button" class="btn ghost" id="btnResetFilters">필터 초기화</button>
+        <button type="button" class="btn pastel-blue" id="btnTodayFocus">오늘 보기</button>
       </div>
     </section>
 
@@ -845,7 +768,6 @@
           <h2 id="selectedDateLabel">선택 날짜 업무</h2>
           <p class="muted" id="selectedDateHelp">달력에서 날짜를 누르면 해당 날짜 업무를 보여줍니다.</p>
         </div>
-        <button type="button" class="btn pastel-mint" id="btnCreateOnSelected">이 날짜에 추가</button>
       </div>
       <div id="selectedDayEmpty" class="empty-state">선택한 날짜에 표시할 업무가 없습니다.</div>
       <div id="selectedDayList" class="task-stack"></div>
@@ -881,12 +803,6 @@
           <h2>전체 업무 목록</h2>
           <p class="muted">정렬 기준: 미완료 우선 → 마감일 빠른 순 → 우선순위</p>
         </div>
-        <div class="toolbar-right">
-          <button type="button" class="btn pastel-yellow" id="btnExportJsonBottom">JSON 내보내기</button>
-          <label for="importFileBottom" class="btn pastel-purple">JSON 불러오기</label>
-          <input id="importFileBottom" type="file" accept="application/json" hidden />
-          <button type="button" class="btn pastel-red" id="btnRestoreSeed">샘플 데이터 복원</button>
-        </div>
       </div>
 
       <div class="table-wrap">
@@ -900,225 +816,185 @@
               <th>우선순위</th>
               <th>상태</th>
               <th>D-day</th>
-              <th>관리</th>
             </tr>
           </thead>
           <tbody id="taskTableBody"></tbody>
         </table>
       </div>
 
-      <p class="note">개인 브라우저에서는 자동 저장되고, 사이트에 공개할 일정은 HTML 안의 <strong>seedTasks</strong> 배열을 수정해서 GitHub에 올리면 됩니다.</p>
+      <p class="note">이 페이지는 브라우저 저장 없이, 맨 아래 <strong>JSON 블록</strong>만 수정하면 GitHub 업로드 즉시 달력 반영이 되도록 설계했습니다.</p>
     </section>
 
     <section class="section section-soft" id="guideSection">
-      <h2>GitHub 반영 포인트</h2>
+      <h2>GitHub 반영 안내</h2>
       <div class="guide-grid">
         <div class="card">
-          <h3 class="local-h3">1. 공개용 일정 수정 위치</h3>
-          <p><code>const seedTasks = [...]</code> 배열에 업무를 넣으면 페이지 첫 진입 시 기본값으로 보입니다.</p>
-          <div class="code-box">{ title: "주간 업무보고 제출", dueDate: "2026-04-09", category: "보고", owner: "행정실", priority: "high", state: "todo", notes: "" }</div>
+          <h3 class="local-h3">1. 수정할 위치</h3>
+          <p>HTML 맨 아래의 <code>&lt;script id="taskData" type="application/json"&gt;</code> 블록만 수정하면 됩니다.</p>
+          <div class="code-box">{
+  "page": {
+    "title": "업무 마감 달력",
+    "lastUpdated": "2026-04-09 09:00"
+  },
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "주간 업무보고 제출",
+      "dueDate": "2026-04-09",
+      "category": "보고",
+      "owner": "행정실",
+      "priority": "high",
+      "state": "todo",
+      "notes": "부장 확인 후 내부결재"
+    }
+  ]
+}</div>
         </div>
         <div class="card">
-          <h3 class="local-h3">2. 개인 사용 흐름</h3>
+          <h3 class="local-h3">2. JSON 작성 규칙</h3>
           <div class="pill-row">
-            <span class="pill">업무 추가</span>
-            <span class="pill">달력 확인</span>
-            <span class="pill">완료 처리</span>
-            <span class="pill">JSON 백업</span>
+            <span class="pill">큰따옴표 사용</span>
+            <span class="pill">쉼표 누락 주의</span>
+            <span class="pill">날짜는 YYYY-MM-DD</span>
+            <span class="pill">priority: high/medium/low</span>
+            <span class="pill">state: todo/doing/hold/done</span>
           </div>
-          <p class="helper-text">브라우저 캐시가 지워질 수 있으니 중요한 일정은 JSON 내보내기로 백업해 두면 안전합니다.</p>
+          <p class="helper-text">JSON은 주석이 안 됩니다. 마지막 항목 뒤에 쉼표를 남기지 않는 것이 가장 중요합니다.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <div id="taskModal" class="modal" hidden aria-hidden="true">
-    <div class="modal-backdrop" data-close-modal="true"></div>
-    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
-      <div class="modal-head">
-        <div>
-          <p class="muted local-tight" id="taskModalMode">새 업무</p>
-          <h3 id="taskModalTitle">업무 추가</h3>
-        </div>
-        <button type="button" class="btn" id="btnCloseModal">닫기</button>
-      </div>
-
-      <form id="taskForm">
-        <input type="hidden" id="taskIdInput" />
-        <div class="form-grid">
-          <div class="field full">
-            <label for="titleInput">업무명 *</label>
-            <input id="titleInput" type="text" maxlength="120" required placeholder="예: 1분기 강사료 정산 결재" />
-          </div>
-          <div class="field">
-            <label for="dueDateInput">마감일 *</label>
-            <input id="dueDateInput" type="date" required />
-          </div>
-          <div class="field">
-            <label for="priorityInput">우선순위</label>
-            <select id="priorityInput">
-              <option value="high">중요</option>
-              <option value="medium">보통</option>
-              <option value="low">여유</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="stateInput">상태</label>
-            <select id="stateInput">
-              <option value="todo">할 일</option>
-              <option value="doing">진행 중</option>
-              <option value="hold">보류</option>
-              <option value="done">완료</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="categoryInput">분류</label>
-            <input id="categoryInput" type="text" list="categoryOptionsList" maxlength="40" placeholder="예: 회계, 보고, 계약" />
-          </div>
-          <div class="field">
-            <label for="ownerInput">담당</label>
-            <input id="ownerInput" type="text" list="ownerOptionsList" maxlength="40" placeholder="예: 행정실, 교무부" />
-          </div>
-          <div class="field full">
-            <label for="linkInput">관련 링크</label>
-            <input id="linkInput" type="url" maxlength="300" placeholder="https://example.com" />
-          </div>
-          <div class="field full">
-            <label for="notesInput">비고</label>
-            <textarea id="notesInput" rows="4" maxlength="1000" placeholder="필요 서류, 확인 메모, 결재 단계 등을 적어두세요."></textarea>
-          </div>
-        </div>
-
-        <datalist id="categoryOptionsList"></datalist>
-        <datalist id="ownerOptionsList"></datalist>
-
-        <p class="helper-text">* 필수 항목만 입력해도 저장됩니다.</p>
-
-        <div class="modal-actions">
-          <button type="button" class="btn ghost" id="btnDeleteInModal" hidden>삭제</button>
-          <button type="button" class="btn" id="btnCancelModal">취소</button>
-          <button type="submit" class="btn primary">저장</button>
-        </div>
-      </form>
-    </section>
-  </div>
+  <script id="taskData" type="application/json">
+  {
+    "page": {
+      "title": "업무 마감 달력",
+      "subtitle": "단일 HTML · GitHub 업로드용 JSON 관리",
+      "lastUpdated": "2026-04-09 09:00",
+      "manager": "행정실",
+      "guideLines": [
+        "GitHub에서는 이 HTML 파일 맨 아래 JSON 블록만 수정하면 됩니다.",
+        "마감일은 YYYY-MM-DD 형식으로 입력하면 달력과 표에 자동 반영됩니다.",
+        "지연 업무, D-Day, 7일 이내 업무를 자동으로 집계합니다.",
+        "priority는 high · medium · low, state는 todo · doing · hold · done만 사용하세요."
+      ]
+    },
+    "tasks": [
+      {
+        "id": "task-001",
+        "title": "주간 업무보고 제출",
+        "dueDate": "2026-04-09",
+        "category": "보고",
+        "owner": "행정실",
+        "priority": "high",
+        "state": "todo",
+        "notes": "부장 확인 후 내부결재 상신",
+        "link": ""
+      },
+      {
+        "id": "task-002",
+        "title": "강사 계약서 증빙 스캔 업로드",
+        "dueDate": "2026-04-10",
+        "category": "계약",
+        "owner": "교육지원",
+        "priority": "high",
+        "state": "doing",
+        "notes": "주민등록등본, 통장사본, 성범죄 조회 동의서 확인",
+        "link": ""
+      },
+      {
+        "id": "task-003",
+        "title": "1분기 강사료 정산 결재",
+        "dueDate": "2026-04-11",
+        "category": "회계",
+        "owner": "행정실",
+        "priority": "high",
+        "state": "doing",
+        "notes": "출석부 대조 후 지출결의서 연결",
+        "link": ""
+      },
+      {
+        "id": "task-004",
+        "title": "만족도 설문 결과 취합",
+        "dueDate": "2026-04-14",
+        "category": "통계",
+        "owner": "교무부",
+        "priority": "medium",
+        "state": "todo",
+        "notes": "학년별 응답 수 체크 후 그래프 작성",
+        "link": ""
+      },
+      {
+        "id": "task-005",
+        "title": "예산 변경 품의 초안 작성",
+        "dueDate": "2026-04-07",
+        "category": "예산",
+        "owner": "행정실",
+        "priority": "high",
+        "state": "hold",
+        "notes": "교장 결재 전 항목 재확인 필요",
+        "link": ""
+      },
+      {
+        "id": "task-006",
+        "title": "교내 행사 안내문 발송",
+        "dueDate": "2026-04-08",
+        "category": "행사",
+        "owner": "학생부",
+        "priority": "medium",
+        "state": "done",
+        "notes": "가정통신문 발송 완료",
+        "link": ""
+      },
+      {
+        "id": "task-007",
+        "title": "신규 강사 서류 보완 요청",
+        "dueDate": "2026-04-15",
+        "category": "계약",
+        "owner": "교육지원",
+        "priority": "medium",
+        "state": "todo",
+        "notes": "자격증 사본 누락자에게 안내",
+        "link": ""
+      },
+      {
+        "id": "task-008",
+        "title": "물품구매 비교견적 업로드",
+        "dueDate": "2026-04-18",
+        "category": "구매",
+        "owner": "행정실",
+        "priority": "medium",
+        "state": "todo",
+        "notes": "3개 업체 비교표 첨부",
+        "link": ""
+      },
+      {
+        "id": "task-009",
+        "title": "5월 강의실 배정 검토",
+        "dueDate": "2026-04-24",
+        "category": "운영",
+        "owner": "교무부",
+        "priority": "low",
+        "state": "todo",
+        "notes": "특별실 사용 일정 중복 여부 확인",
+        "link": ""
+      },
+      {
+        "id": "task-010",
+        "title": "월말 보안점검 체크리스트 제출",
+        "dueDate": "2026-04-29",
+        "category": "점검",
+        "owner": "정보부",
+        "priority": "low",
+        "state": "todo",
+        "notes": "PC 보안 업데이트 현황 포함",
+        "link": ""
+      }
+    ]
+  }
+  </script>
 
   <script>
-    // 공개용 일정 반영은 이 배열만 수정하면 됩니다.
-    const seedTasks = [
-      {
-        id: "task-001",
-        title: "주간 업무보고 제출",
-        dueDate: "2026-04-09",
-        category: "보고",
-        owner: "행정실",
-        priority: "high",
-        state: "todo",
-        notes: "부장 확인 후 내부결재 상신",
-        link: ""
-      },
-      {
-        id: "task-002",
-        title: "강사 계약서 증빙 스캔 업로드",
-        dueDate: "2026-04-10",
-        category: "계약",
-        owner: "교육지원",
-        priority: "high",
-        state: "doing",
-        notes: "주민등록등본, 통장사본, 성범죄 조회 동의서 확인",
-        link: ""
-      },
-      {
-        id: "task-003",
-        title: "1분기 강사료 정산 결재",
-        dueDate: "2026-04-11",
-        category: "회계",
-        owner: "행정실",
-        priority: "high",
-        state: "doing",
-        notes: "출석부 대조 후 지출결의서 연결",
-        link: ""
-      },
-      {
-        id: "task-004",
-        title: "만족도 설문 결과 취합",
-        dueDate: "2026-04-14",
-        category: "통계",
-        owner: "교무부",
-        priority: "medium",
-        state: "todo",
-        notes: "학년별 응답 수 체크 후 그래프 작성",
-        link: ""
-      },
-      {
-        id: "task-005",
-        title: "예산 변경 품의 초안 작성",
-        dueDate: "2026-04-07",
-        category: "예산",
-        owner: "행정실",
-        priority: "high",
-        state: "hold",
-        notes: "교장 결재 전 항목 재확인 필요",
-        link: ""
-      },
-      {
-        id: "task-006",
-        title: "교내 행사 안내문 발송",
-        dueDate: "2026-04-08",
-        category: "행사",
-        owner: "학생부",
-        priority: "medium",
-        state: "done",
-        notes: "가정통신문 발송 완료",
-        link: ""
-      },
-      {
-        id: "task-007",
-        title: "신규 강사 서류 보완 요청",
-        dueDate: "2026-04-15",
-        category: "계약",
-        owner: "교육지원",
-        priority: "medium",
-        state: "todo",
-        notes: "자격증 사본 누락자에게 안내",
-        link: ""
-      },
-      {
-        id: "task-008",
-        title: "물품구매 비교견적 업로드",
-        dueDate: "2026-04-18",
-        category: "구매",
-        owner: "행정실",
-        priority: "medium",
-        state: "todo",
-        notes: "3개 업체 비교표 첨부",
-        link: ""
-      },
-      {
-        id: "task-009",
-        title: "5월 강의실 배정 검토",
-        dueDate: "2026-04-24",
-        category: "운영",
-        owner: "교무부",
-        priority: "low",
-        state: "todo",
-        notes: "특별실 사용 일정 중복 여부 확인",
-        link: ""
-      },
-      {
-        id: "task-010",
-        title: "월말 보안점검 체크리스트 제출",
-        dueDate: "2026-04-29",
-        category: "점검",
-        owner: "정보부",
-        priority: "low",
-        state: "todo",
-        notes: "PC 보안 업데이트 현황 포함",
-        link: ""
-      }
-    ];
-
-    const STORAGE_KEY = "savinghaey.deadlineCalendar.v1";
     const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
     const PRIORITY_LABEL = { high: "중요", medium: "보통", low: "여유" };
     const PRIORITY_RANK = { high: 0, medium: 1, low: 2 };
@@ -1140,7 +1016,11 @@
     };
 
     const els = {
-      todayLabel: document.getElementById("todayLabel"),
+      pageTitle: document.getElementById("pageTitle"),
+      pageSubtitle: document.getElementById("pageSubtitle"),
+      pageMeta: document.getElementById("pageMeta"),
+      guideList: document.getElementById("guideList"),
+      fatalErrorBox: document.getElementById("fatalErrorBox"),
       dashboardText: document.getElementById("dashboardText"),
       summaryGrid: document.getElementById("summaryGrid"),
       keywordInput: document.getElementById("keywordInput"),
@@ -1157,28 +1037,11 @@
       selectedDayEmpty: document.getElementById("selectedDayEmpty"),
       selectedDayList: document.getElementById("selectedDayList"),
       upcomingBody: document.getElementById("upcomingBody"),
-      taskTableBody: document.getElementById("taskTableBody"),
-      taskModal: document.getElementById("taskModal"),
-      taskModalMode: document.getElementById("taskModalMode"),
-      taskModalTitle: document.getElementById("taskModalTitle"),
-      taskForm: document.getElementById("taskForm"),
-      taskIdInput: document.getElementById("taskIdInput"),
-      titleInput: document.getElementById("titleInput"),
-      dueDateInput: document.getElementById("dueDateInput"),
-      priorityInput: document.getElementById("priorityInput"),
-      stateInput: document.getElementById("stateInput"),
-      categoryInput: document.getElementById("categoryInput"),
-      ownerInput: document.getElementById("ownerInput"),
-      linkInput: document.getElementById("linkInput"),
-      notesInput: document.getElementById("notesInput"),
-      categoryOptionsList: document.getElementById("categoryOptionsList"),
-      ownerOptionsList: document.getElementById("ownerOptionsList"),
-      btnDeleteInModal: document.getElementById("btnDeleteInModal"),
-      importFileTop: document.getElementById("importFileTop"),
-      importFileBottom: document.getElementById("importFileBottom")
+      taskTableBody: document.getElementById("taskTableBody")
     };
 
-    let tasks = loadTasks();
+    let pageConfig = null;
+    let tasks = [];
     let filters = { ...DEFAULT_FILTERS };
     let selectedDate = todayKey();
     let currentMonthDate = startOfMonth(parseLocalDate(selectedDate));
@@ -1239,13 +1102,6 @@
       );
     }
 
-    function generateId() {
-      if (typeof crypto !== "undefined" && crypto.randomUUID) {
-        return crypto.randomUUID();
-      }
-      return `task-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
-    }
-
     function normalizeUrl(value) {
       let next = String(value || "").trim();
       if (!next) return "";
@@ -1267,7 +1123,7 @@
         : "todo";
 
       return {
-        id: String(raw?.id || `seed-${index + 1}`),
+        id: String(raw?.id || `task-${index + 1}`),
         title: String(raw?.title || "제목 없는 업무").trim(),
         dueDate,
         category: String(raw?.category || "기타").trim() || "기타",
@@ -1275,29 +1131,42 @@
         priority,
         state,
         notes: String(raw?.notes || "").trim(),
-        link: normalizeUrl(raw?.link || ""),
-        createdAt: raw?.createdAt || new Date().toISOString(),
-        updatedAt: raw?.updatedAt || new Date().toISOString(),
-        completedAt: state === "done" ? raw?.completedAt || new Date().toISOString() : ""
+        link: normalizeUrl(raw?.link || "")
       };
     }
 
-    function loadTasks() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed)) {
-            return parsed.map((item, index) => normalizeTask(item, index));
-          }
-        }
-      } catch (_) {}
-
-      return seedTasks.map((item, index) => normalizeTask(item, index));
+    function normalizePage(raw) {
+      return {
+        title: String(raw?.title || "업무 마감 달력").trim() || "업무 마감 달력",
+        subtitle: String(raw?.subtitle || "단일 HTML · GitHub 업로드용 JSON 관리").trim(),
+        lastUpdated: String(raw?.lastUpdated || "").trim(),
+        manager: String(raw?.manager || "").trim(),
+        guideLines: Array.isArray(raw?.guideLines) ? raw.guideLines.map(item => String(item || "").trim()).filter(Boolean) : []
+      };
     }
 
-    function saveTasks() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    function loadEmbeddedData() {
+      const sourceEl = document.getElementById("taskData");
+      if (!sourceEl) {
+        throw new Error("taskData JSON 블록을 찾지 못했습니다.");
+      }
+
+      let parsed;
+      try {
+        parsed = JSON.parse(sourceEl.textContent.trim());
+      } catch (error) {
+        throw new Error("taskData JSON 문법 오류가 있습니다. 큰따옴표, 쉼표, 날짜 형식을 확인해 주세요.");
+      }
+
+      const nextPage = normalizePage(parsed?.page || {});
+      const nextTasks = Array.isArray(parsed?.tasks)
+        ? parsed.tasks.map((item, index) => normalizeTask(item, index))
+        : [];
+
+      return {
+        page: nextPage,
+        tasks: nextTasks
+      };
     }
 
     function isSameDateKey(a, b) {
@@ -1345,6 +1214,15 @@
       if (priorityGap !== 0) return priorityGap;
 
       return a.title.localeCompare(b.title, "ko");
+    }
+
+    function findBestFocusDate(nextTasks) {
+      const today = todayKey();
+      if (nextTasks.some(task => task.dueDate === today)) {
+        return today;
+      }
+      const nearest = nextTasks.slice().sort(compareTasks)[0];
+      return nearest?.dueDate || today;
     }
 
     function getFilteredTasks() {
@@ -1412,13 +1290,6 @@
 
       filters.category = setSelectOptions(els.categoryFilter, categories, filters.category);
       filters.owner = setSelectOptions(els.ownerFilter, owners, filters.owner);
-
-      els.categoryOptionsList.innerHTML = categories
-        .map(item => `<option value="${escapeHtml(item)}"></option>`)
-        .join("");
-      els.ownerOptionsList.innerHTML = owners
-        .map(item => `<option value="${escapeHtml(item)}"></option>`)
-        .join("");
     }
 
     function createSummaryCard(label, value, help) {
@@ -1431,6 +1302,23 @@
       `;
     }
 
+    function renderHeader() {
+      els.pageTitle.textContent = pageConfig.title;
+      els.pageSubtitle.textContent = pageConfig.subtitle || "단일 HTML · GitHub 업로드용 JSON 관리";
+      const metaParts = [
+        `오늘: ${formatFullDate(todayKey())}`,
+        pageConfig.lastUpdated ? `마지막 반영: ${pageConfig.lastUpdated}` : "",
+        pageConfig.manager ? `관리 부서: ${pageConfig.manager}` : ""
+      ].filter(Boolean);
+      els.pageMeta.textContent = metaParts.join(" · ");
+      document.title = pageConfig.title;
+
+      const guideItems = pageConfig.guideLines.length
+        ? pageConfig.guideLines
+        : ["맨 아래 JSON 블록만 수정하면 달력과 표가 자동 반영됩니다."];
+      els.guideList.innerHTML = guideItems.map(line => `<li>${escapeHtml(line)}</li>`).join("");
+    }
+
     function renderSummary(filteredTasks) {
       const total = tasks.length;
       const completed = tasks.filter(task => task.state === "done").length;
@@ -1439,7 +1327,7 @@
       const upcoming = tasks.filter(task => task.state !== "done" && diffDays(todayKey(), task.dueDate) >= 0 && diffDays(todayKey(), task.dueDate) <= 7).length;
 
       els.summaryGrid.innerHTML = [
-        createSummaryCard("전체 업무", `${total}건`, "등록된 총 업무 수"),
+        createSummaryCard("전체 업무", `${total}건`, "JSON에 등록된 총 업무 수"),
         createSummaryCard("미완료", `${openCount}건`, "할 일 + 진행 중 + 보류"),
         createSummaryCard("7일 이내", `${upcoming}건`, "오늘 포함 임박 일정"),
         createSummaryCard("지연", `${overdue}건`, "마감일이 지난 업무"),
@@ -1508,11 +1396,11 @@
 
     function taskCardHtml(task) {
       const dday = getTaskDday(task);
-      const linkButton = task.link
-        ? `<a class="btn pastel-blue" href="${escapeHtml(task.link)}" target="_blank" rel="noopener">관련 링크</a>`
-        : "";
       const noteHtml = task.notes
         ? `<p class="task-note">${nl2br(task.notes)}</p>`
+        : "";
+      const linkHtml = task.link
+        ? `<a class="btn pastel-blue task-link" href="${escapeHtml(task.link)}" target="_blank" rel="noopener">관련 링크</a>`
         : "";
 
       return `
@@ -1548,13 +1436,7 @@
           </div>
 
           ${noteHtml}
-
-          <div class="task-actions">
-            <button type="button" class="btn pastel-mint" data-action="toggleDone" data-id="${task.id}">${task.state === "done" ? "다시 열기" : "완료 처리"}</button>
-            <button type="button" class="btn pastel-blue" data-action="edit" data-id="${task.id}">수정</button>
-            <button type="button" class="btn pastel-red" data-action="delete" data-id="${task.id}">삭제</button>
-            ${linkButton}
-          </div>
+          ${linkHtml}
         </article>
       `;
     }
@@ -1609,7 +1491,7 @@
       if (!filteredTasks.length) {
         els.taskTableBody.innerHTML = `
           <tr>
-            <td colspan="8">조건에 맞는 업무가 없습니다.</td>
+            <td colspan="7">조건에 맞는 업무가 없습니다.</td>
           </tr>
         `;
         return;
@@ -1629,26 +1511,13 @@
               <td>${PRIORITY_LABEL[task.priority]}</td>
               <td>${STATE_LABEL[task.state]}</td>
               <td><span class="status-text ${dday.className}">${dday.label}</span></td>
-              <td>
-                <div class="table-actions">
-                  <button type="button" class="btn pastel-mint" data-action="toggleDone" data-id="${task.id}">${task.state === "done" ? "열기" : "완료"}</button>
-                  <button type="button" class="btn pastel-blue" data-action="edit" data-id="${task.id}">수정</button>
-                  <button type="button" class="btn pastel-red" data-action="delete" data-id="${task.id}">삭제</button>
-                </div>
-              </td>
             </tr>
           `;
         }).join("");
     }
 
-    function renderTodayLabel() {
-      const today = todayKey();
-      els.todayLabel.textContent = `오늘은 ${formatFullDate(today)}입니다. 브라우저 저장 방식이라 페이지를 새로 열어도 이어서 관리할 수 있습니다.`;
-      document.title = `업무 마감 달력 · ${formatFullDate(today)}`;
-    }
-
     function renderAll() {
-      renderTodayLabel();
+      renderHeader();
       renderOptionLists();
       const filteredTasks = getFilteredTasks().slice().sort(compareTasks);
       renderSummary(filteredTasks);
@@ -1697,233 +1566,17 @@
       renderAll();
     }
 
-    function openModal(task = null, presetDate = "") {
-      const isEdit = Boolean(task);
-      els.taskModal.hidden = false;
-      els.taskModal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
-
-      els.taskModalMode.textContent = isEdit ? "기존 업무" : "새 업무";
-      els.taskModalTitle.textContent = isEdit ? "업무 수정" : "업무 추가";
-      els.taskIdInput.value = task?.id || "";
-      els.titleInput.value = task?.title || "";
-      els.dueDateInput.value = task?.dueDate || presetDate || selectedDate || todayKey();
-      els.priorityInput.value = task?.priority || "medium";
-      els.stateInput.value = task?.state || "todo";
-      els.categoryInput.value = task?.category || "";
-      els.ownerInput.value = task?.owner || "";
-      els.linkInput.value = task?.link || "";
-      els.notesInput.value = task?.notes || "";
-      els.btnDeleteInModal.hidden = !isEdit;
-
-      window.setTimeout(() => {
-        els.titleInput.focus();
-      }, 0);
-    }
-
-    function closeModal() {
-      els.taskModal.hidden = true;
-      els.taskModal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("modal-open");
-      els.taskForm.reset();
-      els.taskIdInput.value = "";
-      els.btnDeleteInModal.hidden = true;
-    }
-
-    function getTaskById(taskId) {
-      return tasks.find(task => task.id === taskId) || null;
-    }
-
-    function handleTaskSubmit(event) {
-      event.preventDefault();
-
-      const id = els.taskIdInput.value.trim();
-      const nowIso = new Date().toISOString();
-      const title = els.titleInput.value.trim();
-      const dueDate = els.dueDateInput.value;
-
-      if (!title) {
-        alert("업무명을 입력해 주세요.");
-        els.titleInput.focus();
-        return;
-      }
-
-      if (!dueDate) {
-        alert("마감일을 입력해 주세요.");
-        els.dueDateInput.focus();
-        return;
-      }
-
-      const payload = {
-        id: id || generateId(),
-        title,
-        dueDate,
-        priority: els.priorityInput.value,
-        state: els.stateInput.value,
-        category: els.categoryInput.value.trim() || "기타",
-        owner: els.ownerInput.value.trim() || "미지정",
-        link: normalizeUrl(els.linkInput.value),
-        notes: els.notesInput.value.trim(),
-        createdAt: nowIso,
-        updatedAt: nowIso,
-        completedAt: els.stateInput.value === "done" ? nowIso : ""
-      };
-
-      if (id) {
-        tasks = tasks.map(task => {
-          if (task.id !== id) return task;
-          return {
-            ...task,
-            ...payload,
-            createdAt: task.createdAt || nowIso,
-            completedAt: payload.state === "done"
-              ? (task.completedAt || nowIso)
-              : ""
-          };
-        });
-      } else {
-        tasks.push(payload);
-      }
-
-      saveTasks();
-      selectedDate = dueDate;
-      currentMonthDate = startOfMonth(parseLocalDate(dueDate));
-      closeModal();
-      renderAll();
-    }
-
-    function toggleTaskDone(taskId) {
-      tasks = tasks.map(task => {
-        if (task.id !== taskId) return task;
-        const nextState = task.state === "done" ? "todo" : "done";
-        return {
-          ...task,
-          state: nextState,
-          updatedAt: new Date().toISOString(),
-          completedAt: nextState === "done" ? new Date().toISOString() : ""
-        };
-      });
-      saveTasks();
-      renderAll();
-    }
-
-    function deleteTask(taskId) {
-      const task = getTaskById(taskId);
-      if (!task) return;
-      const ok = window.confirm(`"${task.title}" 업무를 삭제할까요?`);
-      if (!ok) return;
-      tasks = tasks.filter(item => item.id !== taskId);
-      saveTasks();
-      closeModal();
-      renderAll();
-    }
-
-    function findBestFocusDate(nextTasks) {
-      const today = todayKey();
-      if (nextTasks.some(task => task.dueDate === today)) {
-        return today;
-      }
-      const nearest = nextTasks.slice().sort(compareTasks)[0];
-      return nearest?.dueDate || today;
-    }
-
-    function restoreSeedTasks() {
-      const ok = window.confirm("현재 브라우저에 저장된 내용을 지우고 샘플 데이터로 복원할까요?");
-      if (!ok) return;
-      tasks = seedTasks.map((item, index) => normalizeTask(item, index));
-      saveTasks();
-      selectedDate = findBestFocusDate(tasks);
-      currentMonthDate = startOfMonth(parseLocalDate(selectedDate));
-      resetFilters();
-    }
-
-    function exportJson() {
-      const blob = new Blob([JSON.stringify(tasks, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const anchor = document.createElement("a");
-      anchor.href = url;
-      anchor.download = `deadline-calendar-${todayKey()}.json`;
-      document.body.appendChild(anchor);
-      anchor.click();
-      anchor.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    async function importFromFile(file) {
-      if (!file) return;
-      const text = await file.text();
-      const parsed = JSON.parse(text);
-      const source = Array.isArray(parsed) ? parsed : Array.isArray(parsed?.tasks) ? parsed.tasks : null;
-
-      if (!source) {
-        throw new Error("JSON 형식이 올바르지 않습니다.");
-      }
-
-      tasks = source.map((item, index) => normalizeTask(item, index));
-      saveTasks();
-      selectedDate = findBestFocusDate(tasks);
-      currentMonthDate = startOfMonth(parseLocalDate(selectedDate));
-      resetFilters();
-    }
-
-    function handleFileInputChange(event) {
-      const [file] = event.target.files || [];
-      if (!file) return;
-
-      importFromFile(file)
-        .catch(() => {
-          alert("JSON 파일을 읽지 못했습니다. 배열 형태인지 확인해 주세요.");
-        })
-        .finally(() => {
-          event.target.value = "";
-        });
-    }
-
-    function handleActionClick(event) {
-      const button = event.target.closest("[data-action][data-id]");
-      if (!button) return;
-
-      const taskId = button.getAttribute("data-id");
-      const action = button.getAttribute("data-action");
-      const task = getTaskById(taskId);
-      if (!task) return;
-
-      if (action === "toggleDone") {
-        toggleTaskDone(taskId);
-        return;
-      }
-
-      if (action === "edit") {
-        openModal(task);
-        return;
-      }
-
-      if (action === "delete") {
-        deleteTask(taskId);
-      }
+    function showFatalError(message) {
+      els.fatalErrorBox.hidden = false;
+      els.fatalErrorBox.innerHTML = `<strong>JSON 로딩 실패</strong><br>${escapeHtml(message)}`;
     }
 
     function bindEvents() {
-      document.getElementById("btnOpenCreate").addEventListener("click", () => openModal(null, selectedDate));
       document.getElementById("btnTodayFocus").addEventListener("click", () => focusDate(todayKey()));
       document.getElementById("btnThisMonth").addEventListener("click", () => focusDate(todayKey()));
       document.getElementById("btnPrevMonth").addEventListener("click", () => shiftMonth(-1));
       document.getElementById("btnNextMonth").addEventListener("click", () => shiftMonth(1));
-      document.getElementById("btnCreateOnSelected").addEventListener("click", () => openModal(null, selectedDate));
       document.getElementById("btnResetFilters").addEventListener("click", resetFilters);
-      document.getElementById("btnExportJsonTop").addEventListener("click", exportJson);
-      document.getElementById("btnExportJsonBottom").addEventListener("click", exportJson);
-      document.getElementById("btnRestoreSeed").addEventListener("click", restoreSeedTasks);
-      document.getElementById("btnCloseModal").addEventListener("click", closeModal);
-      document.getElementById("btnCancelModal").addEventListener("click", closeModal);
-      els.btnDeleteInModal.addEventListener("click", () => {
-        const taskId = els.taskIdInput.value.trim();
-        if (taskId) deleteTask(taskId);
-      });
-
-      els.taskForm.addEventListener("submit", handleTaskSubmit);
-      els.importFileTop.addEventListener("change", handleFileInputChange);
-      els.importFileBottom.addEventListener("change", handleFileInputChange);
 
       [
         els.keywordInput,
@@ -1943,32 +1596,23 @@
         if (!button) return;
         focusDate(button.getAttribute("data-date"));
       });
-
-      els.selectedDayList.addEventListener("click", handleActionClick);
-      els.taskTableBody.addEventListener("click", handleActionClick);
-
-      els.taskModal.addEventListener("click", event => {
-        if (event.target.matches("[data-close-modal='true']")) {
-          closeModal();
-        }
-      });
-
-      document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && !els.taskModal.hidden) {
-          closeModal();
-        }
-      });
     }
 
     function init() {
-      selectedDate = findBestFocusDate(tasks);
-      currentMonthDate = startOfMonth(parseLocalDate(selectedDate));
-      bindEvents();
-      renderAll();
+      try {
+        const embedded = loadEmbeddedData();
+        pageConfig = embedded.page;
+        tasks = embedded.tasks;
+        selectedDate = findBestFocusDate(tasks);
+        currentMonthDate = startOfMonth(parseLocalDate(selectedDate));
+        bindEvents();
+        renderAll();
+      } catch (error) {
+        showFatalError(error?.message || "알 수 없는 오류가 발생했습니다.");
+      }
     }
 
     init();
   </script>
-  <script src="/static/footer.js"></script>
 </body>
 </html>
