@@ -593,48 +593,6 @@
       background: #fcfcfc;
     }
 
-    .code-box {
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fafafa;
-      color: #111827;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
-      white-space: pre-wrap;
-      overflow-x: auto;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #f9fafb;
-      font-weight: 700;
-      font-size: 0.92rem;
-    }
-
-    .helper-text {
-      margin: 6px 0 0;
-      font-size: 0.92rem;
-      color: var(--sub);
-    }
-
-    .guide-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
     .fatal-box {
       margin-top: 18px;
       border: 1px solid #fecaca;
@@ -678,7 +636,6 @@
         font-size: 0.76rem;
       }
 
-      .guide-grid,
       .attendance-grid {
         grid-template-columns: 1fr;
       }
@@ -910,9 +867,7 @@
           <tbody id="taskTableBody"></tbody>
         </table>
       </div>
-
     </section>
-
   </main>
 
   <script>
@@ -957,7 +912,6 @@
       pageMeta: document.getElementById("pageMeta"),
       guideList: document.getElementById("guideList"),
       fatalErrorBox: document.getElementById("fatalErrorBox"),
-      dataFilePath: document.getElementById("dataFilePath"),
       dashboardText: document.getElementById("dashboardText"),
       summaryGrid: document.getElementById("summaryGrid"),
       keywordInput: document.getElementById("keywordInput"),
@@ -1448,7 +1402,6 @@
     function renderHeader() {
       els.pageTitle.textContent = pageConfig.title;
       els.pageSubtitle.textContent = pageConfig.subtitle;
-      els.dataFilePath.textContent = DATA_URL;
 
       const metaParts = [
         `오늘: ${formatFullDate(todayKey())}`,
